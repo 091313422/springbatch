@@ -16,14 +16,13 @@ public class Test {
 	public static void main(String[] args) {
 		String[] springConfig  =
             {    
-                "applicationContext.xml"
+                "applicationContext.xml" 
             };
         
         ApplicationContext context =  new ClassPathXmlApplicationContext(springConfig);
         
         JobLauncher jobLauncher = (JobLauncher) context.getBean("jobLauncher");
         Job job = (Job) context.getBean("simpleFileImportJob");
-
         try {
 
             JobExecution execution = jobLauncher.run(job, 
