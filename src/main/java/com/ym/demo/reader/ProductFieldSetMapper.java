@@ -1,6 +1,7 @@
-package com.geekcap.javaworld.springbatchexample.simple.reader;
+package com.ym.demo.reader;
 
-import com.geekcap.javaworld.springbatchexample.simple.model.Product;
+import com.ym.demo.model.Product;
+
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.validation.BindException;

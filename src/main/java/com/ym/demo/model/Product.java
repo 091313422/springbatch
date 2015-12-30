@@ -1,4 +1,4 @@
-package com.geekcap.javaworld.springbatchexample.simple.model;
+package com.ym.demo.model;
 
 /**
  * Simple POJO to represent a product

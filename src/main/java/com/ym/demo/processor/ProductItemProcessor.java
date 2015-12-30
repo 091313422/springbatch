@@ -1,6 +1,7 @@
-package com.geekcap.javaworld.springbatchexample.simple.processor;
+package com.ym.demo.processor;
 
-import com.geekcap.javaworld.springbatchexample.simple.model.Product;
+import com.ym.demo.model.Product;
+
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
