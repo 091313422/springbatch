@@ -36,14 +36,14 @@
                 </property>
                 <!-- The fieldSetMapper maps a line in the file to a Product object -->
                 <property name="fieldSetMapper">
-                    <bean class="com.geekcap.javaworld.springbatchexample.simple.reader.ProductFieldSetMapper" />
+                    <bean class="com.ym.demo.reader.ProductFieldSetMapper" />
                 </property>
             </bean>
         </property>
     </bean>
-    <bean id="productWriter" class="com.geekcap.javaworld.springbatchexample.simple.writer.ProductItemWriter" />
-    <bean id="productProcessor" class="com.geekcap.javaworld.springbatchexample.simple.processor.ProductItemProcessor" />
-    <bean id="archiveFileTasklet" class="com.geekcap.javaworld.springbatchexample.simple.tasklet.ArchiveProductImportFileTasklet" scope="step">
+    <bean id="productWriter" class="com.ym.demo.writer.ProductItemWriter" />
+    <bean id="productProcessor" class="com.ym.demo.processor.ProductItemProcessor" />
+    <bean id="archiveFileTasklet" class="com.ym.demo.tasklet.ArchiveProductImportFileTasklet" scope="step">
         <property name="inputFile" value="#{jobParameters['inputFile']}" />
     </bean>
 </beans>
