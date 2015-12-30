@@ -9,11 +9,17 @@
                 http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
                 http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
-    <bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
-        <property name="transactionManager" ref="transactionManager" />
-    </bean>
+<!--    <bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">-->
+<!--        <property name="transactionManager" ref="transactionManager" />-->
+<!--    </bean>-->
+<!--    <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">-->
+<!--        <property name="jobRepository" ref="jobRepository" />-->
+<!--    </bean>-->
+<!--	<bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"/>-->
+
+	<batch:job-repository  id="jobRepository" transaction-manager="transactionManager" table-prefix="batch_" max-varchar-length="1000"/>
+
     <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
-        <property name="jobRepository" ref="jobRepository" />
+        <property name="jobRepository" ref="jobRepository" />	
     </bean>
-	<bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"/>
 </beans>
