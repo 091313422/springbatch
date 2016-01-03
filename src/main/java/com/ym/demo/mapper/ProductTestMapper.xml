@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ym.demo.dao.ProductTestMapper">
+	
+<!-- 	
+	<resultMap id="product" type="com.ym.demo.model.Product">
+		<result property="id" column="branch_code"/>
+		<result property="brancheManagerCode" column="branch_manager_code"/>
+		<result property="payType" column="pay_type"/>
+		<result property="payTime" column="pay_time"/>
+		<result property="bpCode" column="bp_code"/>
+		<result property="totalMoney" column="total_money"/>
+		<result property="batchNum" column="batch_num"/>
+	</resultMap> -->
+	
+	
+	
+	<select id="queryProduct" parameterType="map" resultType="com.ym.demo.model.Product">
+		SELECT
+			*
+		FROM
+			product
+	</select>
+	
+	<select id="queryProductById" parameterType="int" resultType="com.ym.demo.model.Product">
+			select * from PRODUCT where id = #{id}
+	</select>
+	
+	<insert id="insertBatchProductList" parameterType="map">
+		insert into PRODUCT (id,name,description,quantity) values
+		<foreach collection="list"  item="item"  separator=",">
+			(#{item.id},#{item.name},#{item.description},#{item.quantity})
+		</foreach>
+	</insert>
+	
+	<insert id="insertProductList" parameterType="map">
+		insert into PRODUCT (id,name,description,quantity) values (#{product.id},#{product.name},#{product.description},#{product.quantity})
+	</insert>
+	
+	<update id="updateProduct" parameterType="map">
+			update PRODUCT set name = #{product.name}, description = #{product.description},quantity = #{product.quantity} where id = #{product.id}
+	</update>
+</mapper>

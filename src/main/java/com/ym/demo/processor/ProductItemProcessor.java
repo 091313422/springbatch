@@ -1,5 +1,6 @@
 package com.ym.demo.processor;
 
+import com.ym.demo.dao.ProductTestMapper;
 import com.ym.demo.model.Product;
 
 import org.springframework.batch.item.ItemProcessor;
@@ -16,25 +17,14 @@ import java.util.List;
  */
 public class ProductItemProcessor implements ItemProcessor<Product,Product>
 {
-    private static final String GET_PRODUCT = "select * from PRODUCT where id = ?";
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private ProductTestMapper productTestMapper;
 
     @Override
     public Product process(Product product) throws Exception
     {
         // Retrieve the product from the database
-        List<Product> productList = jdbcTemplate.query(GET_PRODUCT, new Object[] {product.getId()}, new RowMapper<Product>() {
-            @Override
-            public Product mapRow( ResultSet resultSet, int rowNum ) throws SQLException {
-                Product p = new Product();
-                p.setId( resultSet.getInt( 1 ) );
-                p.setName( resultSet.getString( 2 ) );
-                p.setDescription( resultSet.getString( 3 ) );
-                p.setQuantity( resultSet.getInt( 4 ) );
-                return p;
-            }
-        });
+        List<Product> productList = productTestMapper.queryProductById(product.getId());
 
         if( productList.size() > 0 )
         {
