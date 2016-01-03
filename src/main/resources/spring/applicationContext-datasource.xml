@@ -41,11 +41,8 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-        <property name="dataSource" ref="dataSource" />
-    </bean>
-    <!-- create job-meta tables automatically 
 
+    <!-- create job-meta tables automatically 
     <jdbc:initialize-database data-source="dataSource">
         <jdbc:script location="org/springframework/batch/core/schema-drop-mysql.sql" />
         <jdbc:script location="org/springframework/batch/core/schema-mysql.sql" />
@@ -53,17 +50,11 @@
 -->
 	<!-- 配置sqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <!-- 实例化sqlSessionFactory时需要使用上述配置好的数据源以及SQL映射文件 -->
         <property name="dataSource" ref="dataSource" />
-        <!-- 自动扫描me/gacl/mapping/目录下的所有SQL映射的xml文件, 省掉Configuration.xml里的手工配置
-        value="classpath:me/gacl/mapping/*.xml"指的是classpath(类路径)下me.gacl.mapping包中的所有xml文件
-        UserMapper.xml位于me.gacl.mapping包下，这样UserMapper.xml就可以被自动扫描
-         -->
      	<property name="mapperLocations" value="classpath:com/ym/demo/mapper/*.xml" />
     </bean>
     <!-- 配置扫描器 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <!-- 扫描me.gacl.dao这个包以及它的子包下的所有映射接口类 -->
         <property name="basePackage" value="com.ym.demo.dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
